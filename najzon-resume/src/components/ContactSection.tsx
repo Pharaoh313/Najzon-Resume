@@ -52,7 +52,7 @@ export default function ContactSection({ contact, isDarkMode }: ContactSectionPr
       scale: 1,
       transition: {
         duration: 0.5,
-        ease: "easeOut"
+        ease: "easeOut" as const
       }
     }
   };
@@ -66,7 +66,7 @@ export default function ContactSection({ contact, isDarkMode }: ContactSectionPr
     transition: {
       duration: 2,
       repeat: Infinity,
-      ease: "easeInOut"
+      ease: "easeInOut" as const
     }
   };
 

@@ -48,16 +48,16 @@ export default function SkillPill({ skill, isDarkMode, index }: SkillPillProps) 
       z: 50,
       transition: {
         duration: 0.6,
-        ease: "easeInOut",
+        ease: "easeInOut" as const,
         rotateX: {
           repeat: Infinity,
           duration: 2,
-          ease: "easeInOut"
+          ease: "easeInOut" as const
         },
         rotateY: {
           repeat: Infinity,
           duration: 2.5,
-          ease: "easeInOut"
+          ease: "easeInOut" as const
         }
       }
     },
@@ -80,7 +80,7 @@ export default function SkillPill({ skill, isDarkMode, index }: SkillPillProps) 
       transition: {
         duration: 1.5,
         repeat: Infinity,
-        ease: "easeInOut"
+        ease: "easeInOut" as const
       }
     }
   };
@@ -99,7 +99,7 @@ export default function SkillPill({ skill, isDarkMode, index }: SkillPillProps) 
         transition: { 
           delay: index * 0.1,
           duration: 0.5,
-          ease: "easeOut"
+          ease: "easeOut" as const
         }
       }}
     >
@@ -150,7 +150,7 @@ export default function SkillPill({ skill, isDarkMode, index }: SkillPillProps) 
             transition: {
               duration: 0.8,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut" as const
             }
           } : {}}
           style={{

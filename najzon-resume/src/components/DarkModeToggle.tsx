@@ -23,12 +23,12 @@ export default function DarkModeToggle({ isDarkMode, onToggle }: DarkModeToggleP
     light: {
       x: 2,
       rotate: 0,
-      transition: { type: "spring", stiffness: 500, damping: 30 }
+      transition: { type: "spring" as const, stiffness: 500, damping: 30 }
     },
     dark: {
       x: 26,
       rotate: 360,
-      transition: { type: "spring", stiffness: 500, damping: 30 }
+      transition: { type: "spring" as const, stiffness: 500, damping: 30 }
     }
   };
 
@@ -38,7 +38,7 @@ export default function DarkModeToggle({ isDarkMode, onToggle }: DarkModeToggleP
       opacity: 1, 
       scale: 1, 
       rotate: 0,
-      transition: { duration: 0.3, ease: "easeOut" }
+      transition: { duration: 0.3, ease: "easeOut" as const }
     }
   };
 

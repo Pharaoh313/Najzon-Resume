@@ -23,7 +23,7 @@ export default function EasterEgg({ roadmap, isDarkMode }: EasterEggProps) {
       rotate: [0, -10, 10, -5, 5, 0],
       transition: {
         duration: 0.6,
-        ease: "easeInOut"
+        ease: "easeInOut" as const
       }
     },
     tap: {
@@ -45,7 +45,7 @@ export default function EasterEgg({ roadmap, isDarkMode }: EasterEggProps) {
       transition: {
         duration: 1.5,
         repeat: Infinity,
-        ease: "easeInOut"
+        ease: "easeInOut" as const
       }
     }
   };

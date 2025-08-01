@@ -22,7 +22,7 @@ export default function CloudRoadmapModal({ isOpen, onClose, roadmap, isDarkMode
       scale: 1,
       rotateY: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 20,
         stiffness: 300,
         duration: 0.8
@@ -47,7 +47,7 @@ export default function CloudRoadmapModal({ isOpen, onClose, roadmap, isDarkMode
       transition: {
         delay: custom * 0.2,
         duration: 0.6,
-        ease: "easeOut"
+        ease: "easeOut" as const
       }
     })
   };

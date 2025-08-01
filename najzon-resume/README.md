@@ -21,6 +21,7 @@ A modern, interactive resume website built with React, Three.js, and cutting-edg
 - **Functional Contact**: Email and phone links that actually work
 - **Easter Egg**: Hidden cloud security roadmap feature
 - **Scroll Animations**: Elements animate as they come into view
+- **JSON Data Source**: Resume data is loaded from `resume.json` for easy updates
 
 ## 🚀 Tech Stack
 
@@ -30,6 +31,7 @@ A modern, interactive resume website built with React, Three.js, and cutting-edg
 - **Styling**: Tailwind CSS with custom glassmorphism effects
 - **Icons**: Heroicons
 - **Build Tool**: Create React App
+- **Data**: JSON-based resume data structure
 
 ## 📦 Installation
 
@@ -55,11 +57,19 @@ npm start
 ## 🎨 Customization
 
 ### Updating Resume Data
-Edit `src/data/resumeData.ts` to update:
+Edit `src/data/resume.json` to update:
 - Personal information
 - Work experience
 - Skills and categories
 - Cloud security roadmap
+- Contact details
+
+The JSON structure includes:
+- `name`, `title`, `location`, `email`, `phone`, `summary`
+- `experience[]` - Array of job experiences with descriptions and skills
+- `skills[]` - Array of skills with categories and levels
+- `cloudRoadmap[]` - Learning pathway for cloud security
+- Additional fields for certifications, education, projects, languages, and interests
 
 ### Styling
 - Modify `src/index.css` for global styles
@@ -108,6 +118,7 @@ npx gh-pages -d build
 - Efficient animations with `transform-gpu`
 - Image optimization
 - Minimal bundle size
+- JSON data loading for fast updates
 
 ## 🔧 Browser Support
 
@@ -125,6 +136,7 @@ This resume website follows modern web design principles:
 3. **Performance-First**: Fast loading and smooth animations
 4. **Mobile-First**: Designed for mobile, enhanced for desktop
 5. **Progressive Enhancement**: Core functionality works without JavaScript
+6. **Data-Driven**: Easy content updates through JSON structure
 
 ## 🚀 Future Enhancements
 
@@ -136,6 +148,8 @@ Potential features to add:
 - [ ] Analytics integration
 - [ ] SEO optimization with React Helmet
 - [ ] PWA capabilities
+- [ ] Multi-language support
+- [ ] CMS integration for easier content management
 
 ## 🤝 Contributing
 

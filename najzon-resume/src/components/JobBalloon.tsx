@@ -22,7 +22,7 @@ export default function JobBalloon({ job, isOpen, onClose, isDarkMode }: JobBall
       scale: 1,
       rotateY: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 15,
         stiffness: 300,
         duration: 0.6

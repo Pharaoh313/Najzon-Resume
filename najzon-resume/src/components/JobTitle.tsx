@@ -25,16 +25,16 @@ export default function JobTitle({ job, onClick, isDarkMode }: JobTitleProps) {
         y: {
           duration: 0.6,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: "easeInOut" as const
         },
         scale: {
           duration: 0.3,
-          ease: "easeOut"
+          ease: "easeOut" as const
         },
         rotateX: {
           duration: 0.6,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: "easeInOut" as const
         }
       }
     },
