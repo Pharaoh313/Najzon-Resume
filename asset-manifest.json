@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Najzon-Resume/static/css/main.f8a26cf6.css",
+    "main.js": "/Najzon-Resume/static/js/main.fe16593a.js",
+    "static/js/453.f3baa59f.chunk.js": "/Najzon-Resume/static/js/453.f3baa59f.chunk.js",
+    "index.html": "/Najzon-Resume/index.html",
+    "main.f8a26cf6.css.map": "/Najzon-Resume/static/css/main.f8a26cf6.css.map",
+    "main.fe16593a.js.map": "/Najzon-Resume/static/js/main.fe16593a.js.map",
+    "453.f3baa59f.chunk.js.map": "/Najzon-Resume/static/js/453.f3baa59f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f8a26cf6.css",
+    "static/js/main.fe16593a.js"
+  ]
+}
