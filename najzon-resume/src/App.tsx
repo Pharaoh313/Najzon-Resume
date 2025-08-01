@@ -11,28 +11,45 @@ import { resumeData } from './data/resumeData';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+
+  console.log('App component rendering...');
+  console.log('Resume data:', resumeData);
 
   // Check for saved dark mode preference or system preference
   useEffect(() => {
-    const savedTheme = localStorage.getItem('darkMode');
-    if (savedTheme !== null) {
-      setIsDarkMode(JSON.parse(savedTheme));
-    } else {
-      // Check system preference
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setIsDarkMode(prefersDark);
+    try {
+      console.log('Setting up dark mode...');
+      const savedTheme = localStorage.getItem('darkMode');
+      if (savedTheme !== null) {
+        setIsDarkMode(JSON.parse(savedTheme));
+      } else {
+        // Check system preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setIsDarkMode(prefersDark);
+      }
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Error setting up dark mode:', error);
+      setHasError(true);
+      setIsLoading(false);
     }
   }, []);
 
   // Update document class and save preference
   useEffect(() => {
-    const root = document.documentElement;
-    if (isDarkMode) {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
+    try {
+      const root = document.documentElement;
+      if (isDarkMode) {
+        root.classList.add('dark');
+      } else {
+        root.classList.remove('dark');
+      }
+      localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
+    } catch (error) {
+      console.error('Error updating dark mode:', error);
     }
-    localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
   }, [isDarkMode]);
 
   const handleDarkModeToggle = () => {
@@ -50,126 +67,209 @@ function App() {
     }
   };
 
-  return (
-    <motion.div
-      className={`min-h-screen transition-colors duration-500 ${
-        isDarkMode 
-          ? 'bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900' 
-          : 'bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50'
-      }`}
-      variants={pageVariants}
-      initial="initial"
-      animate="animate"
-    >
-      {/* Particle Background */}
-      <ParticleBackground />
-
-      {/* Dark Mode Toggle */}
-      <DarkModeToggle isDarkMode={isDarkMode} onToggle={handleDarkModeToggle} />
-
-      {/* Main Content */}
-      <div className="relative z-10">
-        {/* Hero Section */}
-        <HeroSection
-          name={resumeData.name}
-          title={resumeData.title}
-          location={resumeData.location}
-          summary={resumeData.summary}
-          isDarkMode={isDarkMode}
-        />
-
-        {/* Experience Section */}
-        <ExperienceSection
-          experience={resumeData.experience}
-          isDarkMode={isDarkMode}
-        />
-
-        {/* Skills Section */}
-        <SkillsSection
-          skills={resumeData.skills}
-          isDarkMode={isDarkMode}
-        />
-
-        {/* Contact Section */}
-        <ContactSection
-          contact={resumeData.contact}
-          isDarkMode={isDarkMode}
-        />
-
-        {/* Footer */}
-        <motion.footer
-          className={`py-12 px-4 sm:px-6 lg:px-8 text-center ${
-            isDarkMode ? 'text-gray-400' : 'text-gray-600'
-          }`}
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              className={`p-6 rounded-2xl ${
-                isDarkMode ? 'glass-dark' : 'glass'
-              } mb-6`}
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.2 }}
-            >
-              <p className="text-lg font-medium mb-2">
-                ✨ Built with React, Three.js, Framer Motion & Tailwind CSS
-              </p>
-              <p className="text-sm">
-                Designed to showcase modern web technologies and 3D interactions
-              </p>
-            </motion.div>
-            
-            <motion.p
-              className="text-sm"
-              animate={{
-                opacity: [0.7, 1, 0.7],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
-              © 2024 Najzon Weaver. Made with 💙 for the cloud security community.
-            </motion.p>
-          </div>
-        </motion.footer>
+  // Error boundary
+  if (hasError) {
+    return (
+      <div style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        color: 'white',
+        fontFamily: 'system-ui, sans-serif',
+        textAlign: 'center',
+        padding: '2rem'
+      }}>
+        <div>
+          <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Something went wrong</h1>
+          <p>Please check the console for details.</p>
+          <button 
+            onClick={() => window.location.reload()}
+            style={{
+              padding: '0.5rem 1rem',
+              background: '#3b82f6',
+              color: 'white',
+              border: 'none',
+              borderRadius: '0.5rem',
+              cursor: 'pointer',
+              marginTop: '1rem'
+            }}
+          >
+            Reload Page
+          </button>
+        </div>
       </div>
+    );
+  }
 
-      {/* Easter Egg */}
-      <EasterEgg
-        roadmap={resumeData.cloudRoadmap}
-        isDarkMode={isDarkMode}
-      />
+  // Loading state
+  if (isLoading) {
+    return (
+      <div style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        color: 'white',
+        fontFamily: 'system-ui, sans-serif'
+      }}>
+        <div style={{ textAlign: 'center' }}>
+          <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Najzon Weaver</h1>
+          <p>Loading Resume...</p>
+        </div>
+      </div>
+    );
+  }
 
-      {/* Scroll to Top Button */}
-      <motion.button
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className={`
-          fixed bottom-6 left-6 p-3 rounded-full z-40 transition-colors
-          ${isDarkMode 
-            ? 'glass-dark border border-gray-600 text-white hover:border-gray-500' 
-            : 'glass border border-gray-300 text-gray-700 hover:border-gray-400'
-          }
-        `}
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 3, duration: 0.5 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+  try {
+    return (
+      <motion.div
+        className={`min-h-screen transition-colors duration-500 ${
+          isDarkMode 
+            ? 'bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900' 
+            : 'bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50'
+        }`}
+        variants={pageVariants}
+        initial="initial"
+        animate="animate"
       >
-        <motion.div
-          animate={{ y: [0, -2, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        {/* Particle Background - Make it optional in case it causes issues */}
+        {typeof window !== 'undefined' && (
+          <ParticleBackground />
+        )}
+
+        {/* Dark Mode Toggle */}
+        <DarkModeToggle isDarkMode={isDarkMode} onToggle={handleDarkModeToggle} />
+
+        {/* Main Content */}
+        <div className="relative z-10">
+          {/* Hero Section */}
+          <HeroSection
+            name={resumeData.name}
+            title={resumeData.title}
+            location={resumeData.location}
+            summary={resumeData.summary}
+            isDarkMode={isDarkMode}
+          />
+
+          {/* Experience Section */}
+          <ExperienceSection
+            experience={resumeData.experience}
+            isDarkMode={isDarkMode}
+          />
+
+          {/* Skills Section */}
+          <SkillsSection
+            skills={resumeData.skills}
+            isDarkMode={isDarkMode}
+          />
+
+          {/* Contact Section */}
+          <ContactSection
+            contact={resumeData.contact}
+            isDarkMode={isDarkMode}
+          />
+
+          {/* Footer */}
+          <motion.footer
+            className={`py-12 px-4 sm:px-6 lg:px-8 text-center ${
+              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+            }`}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="max-w-4xl mx-auto">
+              <motion.div
+                className={`p-6 rounded-2xl ${
+                  isDarkMode ? 'glass-dark' : 'glass'
+                } mb-6`}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <p className="text-lg font-medium mb-2">
+                  ✨ Built with React, Three.js, Framer Motion & Tailwind CSS
+                </p>
+                <p className="text-sm">
+                  Designed to showcase modern web technologies and 3D interactions
+                </p>
+              </motion.div>
+              
+              <motion.p
+                className="text-sm"
+                animate={{
+                  opacity: [0.7, 1, 0.7],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                © 2024 Najzon Weaver. Made with 💙 for the cloud security community.
+              </motion.p>
+            </div>
+          </motion.footer>
+        </div>
+
+        {/* Easter Egg */}
+        <EasterEgg
+          roadmap={resumeData.cloudRoadmap}
+          isDarkMode={isDarkMode}
+        />
+
+        {/* Scroll to Top Button */}
+        <motion.button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className={`
+            fixed bottom-6 left-6 p-3 rounded-full z-40 transition-colors
+            ${isDarkMode 
+              ? 'glass-dark border border-gray-600 text-white hover:border-gray-500' 
+              : 'glass border border-gray-300 text-gray-700 hover:border-gray-400'
+            }
+          `}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 3, duration: 0.5 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
         >
-          ↑
-        </motion.div>
-      </motion.button>
-    </motion.div>
-  );
+          <motion.div
+            animate={{ y: [0, -2, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            ↑
+          </motion.div>
+        </motion.button>
+      </motion.div>
+    );
+  } catch (error) {
+    console.error('Error rendering App:', error);
+    return (
+      <div style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        color: 'white',
+        fontFamily: 'system-ui, sans-serif',
+        textAlign: 'center',
+        padding: '2rem'
+      }}>
+        <div>
+          <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Najzon Weaver</h1>
+          <p>Resume website is loading...</p>
+          <p style={{ fontSize: '0.9rem', marginTop: '1rem', opacity: 0.8 }}>
+            If this persists, please check the browser console for errors.
+          </p>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
