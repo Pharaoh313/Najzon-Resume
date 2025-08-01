@@ -1,46 +1,160 @@
-# Getting Started with Create React App
+# Najzon Weaver - Interactive 3D Resume Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, interactive resume website built with React, Three.js, and cutting-edge web technologies. Features 3D animations, glassmorphism design, and engaging user interactions.
 
-## Available Scripts
+## 🌟 Features
 
-In the project directory, you can run:
+### Interactive 3D Elements
+- **Particle Background**: Animated 3D particles using React Three Fiber
+- **Bouncing Job Titles**: Hover to see job titles bounce with 3D animations
+- **Balloon Modal Pop-ups**: Click job titles to reveal detailed information in 3D modal balloons
+- **3D Skill Pills**: Animated skill tags with rotation and glow effects
 
-### `npm start`
+### Modern UI/UX
+- **Glassmorphism Design**: Beautiful glass-like interface elements
+- **Dark/Light Mode**: Smooth toggle between themes with system preference detection
+- **Responsive Design**: Optimized for all device sizes
+- **Smooth Animations**: Framer Motion powered transitions and micro-interactions
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Smart Features
+- **Device Detection**: Phone links work intelligently on mobile vs desktop
+- **Functional Contact**: Email and phone links that actually work
+- **Easter Egg**: Hidden cloud security roadmap feature
+- **Scroll Animations**: Elements animate as they come into view
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🚀 Tech Stack
 
-### `npm test`
+- **Frontend**: React 18 with TypeScript
+- **3D Graphics**: Three.js with React Three Fiber
+- **Animations**: Framer Motion
+- **Styling**: Tailwind CSS with custom glassmorphism effects
+- **Icons**: Heroicons
+- **Build Tool**: Create React App
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📦 Installation
 
-### `npm run build`
+```bash
+# Clone the repository
+git clone <repository-url>
+cd najzon-resume
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Install dependencies
+npm install
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Start development server
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🛠️ Available Scripts
 
-### `npm run eject`
+- `npm start` - Runs the app in development mode
+- `npm build` - Builds the app for production
+- `npm test` - Launches the test runner
+- `npm run eject` - Ejects from Create React App (one-way operation)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🎨 Customization
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Updating Resume Data
+Edit `src/data/resumeData.ts` to update:
+- Personal information
+- Work experience
+- Skills and categories
+- Cloud security roadmap
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Styling
+- Modify `src/index.css` for global styles
+- Update `tailwind.config.js` for theme customization
+- Component-specific styles are in individual component files
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Colors & Themes
+The color scheme uses:
+- **Blue**: Primary brand color
+- **Purple**: Accent color
+- **Green**: Success/positive actions
+- **Orange**: Productivity skills
+- **Teal**: Operations skills
 
-## Learn More
+## 📱 Responsive Breakpoints
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Mobile**: 320px - 768px
+- **Tablet**: 768px - 1024px
+- **Desktop**: 1024px+
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🌐 Deployment
+
+### Vercel (Recommended)
+```bash
+npm install -g vercel
+vercel
+```
+
+### Netlify
+```bash
+npm run build
+# Upload build folder to Netlify
+```
+
+### GitHub Pages
+```bash
+npm install --save-dev gh-pages
+npm run build
+npx gh-pages -d build
+```
+
+## 🎯 Performance Optimizations
+
+- Lazy loading of components
+- Optimized particle count for mobile devices
+- Efficient animations with `transform-gpu`
+- Image optimization
+- Minimal bundle size
+
+## 🔧 Browser Support
+
+- Chrome 90+
+- Firefox 88+
+- Safari 14+
+- Edge 90+
+
+## 🎨 Design Philosophy
+
+This resume website follows modern web design principles:
+
+1. **User-Centered**: Every interaction serves a purpose
+2. **Accessible**: Works for users with different abilities
+3. **Performance-First**: Fast loading and smooth animations
+4. **Mobile-First**: Designed for mobile, enhanced for desktop
+5. **Progressive Enhancement**: Core functionality works without JavaScript
+
+## 🚀 Future Enhancements
+
+Potential features to add:
+- [ ] PDF download functionality
+- [ ] Blog/Portfolio section
+- [ ] Project showcase with live demos
+- [ ] Contact form with backend integration
+- [ ] Analytics integration
+- [ ] SEO optimization with React Helmet
+- [ ] PWA capabilities
+
+## 🤝 Contributing
+
+This is a personal resume website, but feedback and suggestions are welcome! Feel free to:
+- Report bugs
+- Suggest improvements
+- Share design ideas
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 📞 Contact
+
+**Najzon Weaver**
+- Email: weaverj56@gmail.com
+- Phone: +1 313 690 1673
+- Location: Mount Clemens, MI
+
+---
+
+*Built with 💙 for the cloud security community*
